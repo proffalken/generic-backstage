@@ -34,5 +34,5 @@ jobs:
 
       - name: Upload Container
         run: |
-          docker tag backstage:latest registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web \
-          docker push registery.heroku.com/${{ env.HEROKU_APP_NAME }}/web
+          docker tag backstage:latest registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web \
+          docker push registery.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web

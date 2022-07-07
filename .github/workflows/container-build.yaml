@@ -13,6 +13,10 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+      - name: Login to Heroku Container registry
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login
 
       - name: Yarn Tasks
         run: |
@@ -23,11 +27,6 @@ jobs:
 
       - name: Upload Container
         run: |
+          docker login --username=_ --password=$(heroku auth:token) registry.heroku.com \
           docker tag backstage:latest registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web \
           docker push registery.heroku.com/${{ env.HEROKU_APP_NAME }}/web
-
-      - name: Release Application
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |
-          heroku container:release web -a ${{ env.HEROKU_APP_NAME }}
-

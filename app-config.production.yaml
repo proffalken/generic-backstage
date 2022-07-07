@@ -41,8 +41,8 @@ auth:
   providers:
     github:
       production:
-        clientId: ${ GITHUB_CLIENT_ID }
-        clientSecret: ${ GITHUB_CLIENT_SECRET }
+        clientId: ${ GITHUB_AUTH_CLIENT_ID }
+        clientSecret: ${ GITHUB_AUTH_CLIENT_SECRET }
 
 catalog:
   # Overrides the default list locations from app-config.yaml as these contain example data.

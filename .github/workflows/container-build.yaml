@@ -1,0 +1,33 @@
+name: Container Build
+on:
+  push:
+    branches:
+      - main
+  pull_request_target:
+
+jobs:
+  container_build:
+    name: Container Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Yarn Tasks
+        run: |
+          yarn && yarn tsc && yarn build
+
+      - name: Create container
+        run: yarn build-image
+
+      - name: Upload Container
+        run: |
+          docker tag backstage:latest registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web \
+          docker push registery.heroku.com/${{ env.HEROKU_APP_NAME }}/web
+
+      - name: Release Application
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          heroku container:release web -a ${{ env.HEROKU_APP_NAME }}
+

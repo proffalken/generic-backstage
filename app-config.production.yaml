@@ -1,6 +1,7 @@
 app:
   # Should be the same as backend.baseUrl when using the `app-backend` plugin.
-  baseUrl: https://${ HEROKU_PROJECT_NAME }.herokuapp.com:${ PORT }
+  title: ${ HEROKU_PROJECT_NAME }
+  baseUrl: https://${ HEROKU_PROJECT_NAME }.herokuapp.com
 
 backend:
   # Note that the baseUrl should be the URL that the browser and other clients

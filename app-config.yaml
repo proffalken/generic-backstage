@@ -49,7 +49,7 @@ integrations:
 proxy:
     '/prometheus/api':
       # url to the api and path of your hosted prometheus instance
-      target: "${ GRAFANA_PROMETHEUS_URI }"
+      target: http://prometheus/v1/api
       headers:
         Authorization: ${ GRAFANA_PROMETHEUS_VIEWER_TOKEN }
 

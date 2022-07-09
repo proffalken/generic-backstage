@@ -58,4 +58,4 @@ proxy:
       # url to the api and path of your hosted prometheus instance
       target: ${ GRAFANA_PROMETHEUS_URI }
       headers:
-        Authorization: ${ GRAFANA_PROMETHEUS_VIEWER_TOKEN }
+        Authorization: Bearer ${ GRAFANA_PROMETHEUS_VIEWER_TOKEN }

@@ -56,4 +56,6 @@ catalog:
 proxy:
     '/prometheus/api':
       # url to the api and path of your hosted prometheus instance
-      target: "https://${ GRAFANA_PROMETHEUS_USER }:${ GRAFANA_PROMETHEUS_VIEWER_TOKEN}@${ GRAFANA_PROMETHEUS_URI }"
+      target: "https://${ GRAFANA_PROMETHEUS_URI }"
+      headers:
+        Authorization: "Basic ${GRAFANA_PROMETHEUS_VIEWER_TOKEN}"
